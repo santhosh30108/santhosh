@@ -236,30 +236,6 @@ html.has-custom-cursor * {
   opacity: 1;
 }
 
-/* ---------- marquee ---------- */
-.marquee {
-  display: flex;
-  overflow: clip;
-  user-select: none;
-  gap: 0;
-}
-.marquee-track {
-  display: flex;
-  flex-shrink: 0;
-  min-width: 100%;
-  align-items: center;
-  animation: marquee-x var(--marquee-speed, 36s) linear infinite;
-}
-.marquee[data-reverse="true"] .marquee-track {
-  animation-direction: reverse;
-}
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
-}
-@keyframes marquee-x {
-  to { transform: translateX(-100%); }
-}
-
 /* ---------- chapter rail ---------- */
 .rail-label {
   writing-mode: vertical-rl;
@@ -431,9 +407,6 @@ html.has-custom-cursor * {
     transition-duration: 0.01ms !important;
   }
   .grain::after {
-    animation: none;
-  }
-  .marquee-track {
     animation: none;
   }
   .word-scrub .w {

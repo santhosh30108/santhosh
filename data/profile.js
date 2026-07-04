@@ -17,7 +17,6 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/santhosh30108",
   linkedinHandle: "in/santhosh30108",
   resume: "/resume.pdf",
-  availability: "Open to conversations",
   roles: [
     "Full-Stack Developer",
     "Senior Software Engineer",

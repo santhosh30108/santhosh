@@ -54,17 +54,6 @@ export default function Topbar({ onOpenPalette }) {
             </a>
           </Magnetic>
 
-          <div className="hidden items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-muted md:flex">
-            <span className="relative flex h-1.5 w-1.5">
-              <span
-                className="absolute h-full w-full rounded-full bg-emerald-400"
-                style={{ animation: "pulse-dot 2s ease-in-out infinite" }}
-              />
-              <span className="relative h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            </span>
-            {profile.availability}
-          </div>
-
           <div className="flex items-center gap-2.5">
             <button
               type="button"

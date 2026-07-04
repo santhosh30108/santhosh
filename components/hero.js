@@ -106,16 +106,9 @@ export default function Hero() {
         <div data-parallax="title">
           <p
             data-meta
-            className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-fg-soft sm:text-xs"
+            className="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-fg-soft sm:text-xs"
           >
-            <span className="relative flex h-2 w-2">
-              <span
-                className="absolute h-full w-full rounded-full bg-emerald-400"
-                style={{ animation: "pulse-dot 2s ease-in-out infinite" }}
-              />
-              <span className="relative h-2 w-2 rounded-full bg-emerald-400" />
-            </span>
-            {profile.availability} — {profile.role} @ {profile.companyShort}
+            {profile.role} — {profile.companyShort}
           </p>
 
           <h1
