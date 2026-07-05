@@ -33,10 +33,10 @@ export default function Experience() {
   return (
     <section id="experience" ref={ref} className="relative scroll-mt-20 bg-bg-2/60 py-28 sm:py-40">
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8">
-        <ChapterHeading index="02" eyebrow="Experience — the track record">
+        <ChapterHeading index="02" eyebrow="Experience">
           Four years,
           <br />
-          <span className="text-stroke">zero</span>{" "}
+          <span className="text-quiet">zero</span>{" "}
           <span className="font-serif italic font-normal lowercase text-iridescent">handoffs.</span>
         </ChapterHeading>
 
@@ -49,15 +49,8 @@ export default function Experience() {
 
           <ol className="space-y-20 sm:space-y-28 sm:pl-16">
             {experience.map((job, i) => {
-              const year = job.period.match(/\d{4}/)?.[0] ?? "";
               return (
                 <li key={`${job.company}-${job.role}`} className="relative">
-                  <span
-                    aria-hidden="true"
-                    className="watermark pointer-events-none absolute -top-14 right-0 select-none text-[6rem] sm:text-[10rem]"
-                  >
-                    {year}
-                  </span>
                   <span
                     aria-hidden="true"
                     className={`absolute -left-16 top-3 hidden h-[11px] w-[11px] rounded-full sm:block ${
@@ -74,7 +67,7 @@ export default function Experience() {
                         </span>
                       )}
                     </p>
-                    <h3 className="display mt-4 text-3xl leading-[1.05] sm:text-5xl">
+                    <h3 className="display mt-4 text-3xl leading-[1.05] sm:text-4xl">
                       {job.role}
                     </h3>
                     <p className="mt-2 font-serif text-xl italic text-accent sm:text-2xl">

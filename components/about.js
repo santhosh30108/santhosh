@@ -42,7 +42,7 @@ export default function About() {
   return (
     <section id="about" ref={ref} className="relative scroll-mt-20 py-28 sm:py-40">
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8">
-        <ChapterHeading index="01" eyebrow="About — the operating principle">
+        <ChapterHeading index="01" eyebrow="About">
           Owner,
           <br />
           not <span className="font-serif italic font-normal lowercase text-iridescent">renter.</span>

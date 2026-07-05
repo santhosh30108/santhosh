@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap } from "@/components/gsap";
 
 // 3D tilt + pointer-tracked glare. Wraps any content.
-export default function TiltCard({ className = "", max = 7, children, ...rest }) {
+export default function TiltCard({ className = "", max = 3, children, ...rest }) {
   const ref = useRef(null);
 
   const onMove = (e) => {
@@ -27,7 +27,7 @@ export default function TiltCard({ className = "", max = 7, children, ...rest })
   const onLeave = () => {
     const el = ref.current;
     if (!el) return;
-    gsap.to(el, { rotateX: 0, rotateY: 0, duration: 0.7, ease: "elastic.out(1, 0.55)" });
+    gsap.to(el, { rotateX: 0, rotateY: 0, duration: 0.6, ease: "power2.out" });
   };
 
   return (

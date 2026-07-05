@@ -95,29 +95,6 @@ html.has-custom-cursor * {
   cursor: none !important;
 }
 
-/* ---------- film grain ---------- */
-.grain::after {
-  content: "";
-  position: fixed;
-  inset: -100%;
-  z-index: 90;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 256px 256px;
-  opacity: 0.035;
-  animation: grain-shift 0.9s steps(4) infinite;
-}
-[data-theme="light"] .grain::after {
-  opacity: 0.05;
-}
-@keyframes grain-shift {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(-2%, 1%); }
-  50% { transform: translate(1%, -2%); }
-  75% { transform: translate(-1%, 2%); }
-  100% { transform: translate(2%, -1%); }
-}
-
 /* ---------- typography helpers ---------- */
 .display {
   font-family: var(--font-display);
@@ -126,39 +103,21 @@ html.has-custom-cursor * {
   line-height: 0.98;
 }
 
-.text-stroke {
-  -webkit-text-stroke: 1px var(--line-strong);
-  color: transparent;
+/* muted display line — replaces the old outlined text for a calmer hierarchy */
+.text-quiet {
+  color: var(--muted);
 }
 
 .text-gradient {
-  background: linear-gradient(100deg, var(--accent), var(--accent-2), var(--accent));
-  background-size: 200% auto;
+  background: linear-gradient(100deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: gradient-pan 9s ease infinite;
 }
 
+/* quiet serif accent — a single confident color, no animation */
 .text-iridescent {
-  background: linear-gradient(115deg, #a5a5ff 0%, #7de3f4 30%, #b7f2c5 55%, #ffd9a0 78%, #a5a5ff 100%);
-  background-size: 260% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradient-pan 12s linear infinite;
-}
-[data-theme="light"] .text-iridescent {
-  background-image: linear-gradient(115deg, #4f46e5 0%, #0e7490 35%, #0f766e 60%, #b45309 85%, #4f46e5 100%);
-  background-size: 260% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-@keyframes gradient-pan {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  color: var(--accent);
 }
 
 /* split-text atoms */
@@ -195,7 +154,7 @@ html.has-custom-cursor * {
   border-color: var(--line-strong);
 }
 
-/* pointer-tracked sheen + glare for tilt cards */
+/* pointer-tracked glow for cards — kept faint so content leads */
 .glare {
   position: relative;
   overflow: hidden;
@@ -212,28 +171,7 @@ html.has-custom-cursor * {
   pointer-events: none;
 }
 .glare:hover::before {
-  opacity: 1;
-}
-.glare::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  background: linear-gradient(
-    105deg,
-    transparent 42%,
-    rgba(255, 255, 255, 0.055) 48%,
-    rgba(255, 255, 255, 0.12) 50%,
-    rgba(255, 255, 255, 0.055) 52%,
-    transparent 58%
-  );
-  background-position: calc(var(--mx, 50%) - 50%) 0;
-  pointer-events: none;
-}
-.glare:hover::after {
-  opacity: 1;
+  opacity: 0.45;
 }
 
 /* ---------- chapter rail ---------- */
@@ -309,16 +247,6 @@ html.has-custom-cursor * {
   transform: scaleY(1);
 }
 
-/* ---------- work gallery card index watermark ---------- */
-.watermark {
-  font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--line-strong);
-  opacity: 0.5;
-}
-
 /* ---------- link underline sweep ---------- */
 .link-sweep {
   position: relative;
@@ -338,16 +266,6 @@ html.has-custom-cursor * {
 .link-sweep:hover::after {
   transform: scaleX(1);
   transform-origin: left;
-}
-
-/* ---------- email giant hover wave ---------- */
-.wave-link .char {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
-  transition-delay: calc(var(--i) * 14ms);
-}
-.wave-link:hover .char {
-  transform: translateY(-0.14em);
-  color: var(--accent-2);
 }
 
 /* ---------- keyframes ---------- */
@@ -405,9 +323,6 @@ html.has-custom-cursor * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  .grain::after {
-    animation: none;
   }
   .word-scrub .w {
     opacity: 1;

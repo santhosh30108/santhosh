@@ -1,23 +1,25 @@
 "use client";
 
 import { useRef } from "react";
-import Aurora from "@/components/aurora";
 import Magnetic from "@/components/magnetic";
+import Sky from "@/components/sky";
 import { gsap, useGSAP } from "@/components/gsap";
 import { IconArrowUpRight, IconDownload } from "@/components/icons";
+import { CONDITION_LABELS, PHASE_LABELS, useEnvironment } from "@/components/use-environment";
 import { profile } from "@/data/profile";
 
 function Chars({ text }) {
   return text.split("").map((c, i) => (
     <span key={i} className="char">
-      {c === " " ? " " : c}
+      {c === " " ? " " : c}
     </span>
   ));
 }
 
 export default function Hero() {
   const ref = useRef(null);
-  const scrambleRef = useRef(null);
+  const roleRef = useRef(null);
+  const { phase, condition } = useEnvironment();
 
   useGSAP(
     () => {
@@ -40,11 +42,12 @@ export default function Hero() {
           .to(chars2, { yPercent: 0, duration: 1.15, stagger: 0.04, ease: "power4.out" }, 0.18)
           .to(meta, { y: 0, opacity: 1, duration: 0.9, stagger: 0.09, ease: "power3.out" }, 0.75);
 
-        // Cycle roles with a scramble decode
+        // Rotate through real designations, decoding from glyphs into text
         const roles = profile.roles;
         let i = 0;
         const cycle = () => {
-          gsap.to(scrambleRef.current, {
+          if (!roleRef.current) return;
+          gsap.to(roleRef.current, {
             duration: 1.4,
             scrambleText: {
               text: roles[i % roles.length],
@@ -66,7 +69,7 @@ export default function Hero() {
       // Safety: if the event never arrives, play anyway.
       const failsafe = gsap.delayedCall(4.5, play);
 
-      // Scroll parallax: title drifts up slower, meta fades
+      // Scroll parallax: title drifts up slower, veil fades in
       gsap.to("[data-parallax='title']", {
         yPercent: -18,
         ease: "none",
@@ -86,6 +89,13 @@ export default function Hero() {
     { scope: ref }
   );
 
+  const summaryLead = profile.summary.split(". ")[0] + ".";
+  const skyLabel = phase
+    ? condition
+      ? `${CONDITION_LABELS[condition]} · ${PHASE_LABELS[phase]}`
+      : PHASE_LABELS[phase]
+    : "";
+
   return (
     <section
       id="top"
@@ -93,9 +103,17 @@ export default function Hero() {
       className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden"
     >
       <div className="absolute inset-0">
-        <Aurora />
+        <Sky phase={phase} condition={condition} />
       </div>
-      <div className="hero-grid absolute inset-0" aria-hidden="true" />
+      {/* readability scrims — content zone stays anchored to the page bg */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-[62%] bg-gradient-to-t from-bg via-bg/55 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-bg/50 to-transparent"
+      />
       <div
         data-parallax="veil"
         aria-hidden="true"
@@ -104,13 +122,6 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 pb-10 pt-32 sm:px-8 sm:pb-14">
         <div data-parallax="title">
-          <p
-            data-meta
-            className="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-fg-soft sm:text-xs"
-          >
-            {profile.role} — {profile.companyShort}
-          </p>
-
           <h1
             className="display select-none uppercase"
             style={{ fontWeight: 700, letterSpacing: "-0.02em" }}
@@ -120,7 +131,7 @@ export default function Hero() {
             </span>
             <span
               data-l2
-              className="char-line block text-[clamp(3rem,9vw,8rem)] leading-[0.95] text-stroke"
+              className="char-line block text-[clamp(3rem,9vw,8rem)] leading-[0.95] text-quiet"
             >
               <Chars text="Kumar" />
             </span>
@@ -130,13 +141,12 @@ export default function Hero() {
         <div className="mt-10 grid gap-8 border-t border-line pt-8 md:grid-cols-[1fr_auto] md:items-end">
           <div data-meta className="max-w-xl">
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent">
-              <span ref={scrambleRef}>{profile.roles[0]}</span>
+              <span ref={roleRef} className="inline-block">
+                {profile.roles[0]}
+              </span>
             </p>
             <p className="mt-4 text-base leading-relaxed text-fg-soft sm:text-lg">
-              I design, build, and optimise scalable systems for millions of learners —
-              owning products from{" "}
-              <em className="font-serif italic text-fg">architecture</em> to{" "}
-              <em className="font-serif italic text-fg">launch</em>.
+              {summaryLead}
             </p>
           </div>
 
@@ -170,7 +180,11 @@ export default function Hero() {
           className="mt-8 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-muted sm:text-[11px]"
         >
           <span>{profile.location}</span>
-          <span className="hidden sm:block">Est. 2022 — shipping since</span>
+          {skyLabel ? (
+            <span className="hidden sm:block" title="The sky above adapts to your local time and weather">
+              {skyLabel}
+            </span>
+          ) : null}
           <a href="#about" className="link-sweep flex items-center gap-2 text-fg-soft">
             Scroll
             <span style={{ animation: "float-slow 2.6s ease-in-out infinite" }} aria-hidden="true">

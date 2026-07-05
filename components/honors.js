@@ -9,7 +9,7 @@ export default function Honors() {
   return (
     <section id="honors" className="relative scroll-mt-20 py-28 sm:py-40">
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8">
-        <ChapterHeading index="05" eyebrow="Honors — receipts included">
+        <ChapterHeading index="05" eyebrow="Recognition">
           Proof of
           <br />
           <span className="font-serif italic font-normal lowercase text-iridescent">craft.</span>
@@ -27,7 +27,7 @@ export default function Honors() {
               {awards.map((award, i) => (
                 <Rise as="li" key={award.title} delay={Math.min(i * 0.06, 0.25)}>
                   <div className="group flex items-baseline gap-6 border-b border-line py-6 transition-colors duration-300 hover:border-line-strong sm:gap-10">
-                    <span className="display shrink-0 text-2xl text-stroke transition-colors duration-300 group-hover:text-accent-3 sm:text-4xl" style={{ WebkitTextStroke: "1px var(--line-strong)" }}>
+                    <span className="shrink-0 font-mono text-sm text-muted transition-colors duration-300 group-hover:text-accent-3">
                       {award.year}
                     </span>
                     <div>

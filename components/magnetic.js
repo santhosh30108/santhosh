@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/components/gsap";
 
 // Wraps a single child; the child is gently pulled toward the pointer.
-export default function Magnetic({ strength = 0.35, className = "", children }) {
+export default function Magnetic({ strength = 0.15, className = "", children }) {
   const ref = useRef(null);
 
   useEffect(() => {

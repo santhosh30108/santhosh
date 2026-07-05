@@ -25,14 +25,6 @@ function LocalClock() {
   return <span suppressHydrationWarning>{time || "—"}</span>;
 }
 
-function WaveChars({ text }) {
-  return text.split("").map((c, i) => (
-    <span key={i} className="char" style={{ "--i": i }}>
-      {c}
-    </span>
-  ));
-}
-
 export default function Contact() {
   const ref = useRef(null);
   const [copied, setCopied] = useState(false);
@@ -42,15 +34,15 @@ export default function Contact() {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       gsap.fromTo(
         "[data-talk]",
-        { scale: 0.86, opacity: 0.3 },
+        { y: 40, opacity: 0.4 },
         {
-          scale: 1,
+          y: 0,
           opacity: 1,
           ease: "none",
           scrollTrigger: {
             trigger: ref.current,
             start: "top 85%",
-            end: "top 25%",
+            end: "top 35%",
             scrub: 0.5,
           },
         }
@@ -80,15 +72,22 @@ export default function Contact() {
       />
 
       <div className="relative mx-auto w-full max-w-[1600px] px-5 sm:px-8">
-        <p className="mb-8 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] text-accent">
-          <span className="inline-block h-px w-12 bg-accent" aria-hidden="true" />
-          06 — Contact
+        <span
+          aria-hidden="true"
+          className="absolute right-5 top-0 hidden select-none font-mono text-sm tracking-[0.2em] text-muted/70 sm:right-8 sm:block"
+        >
+          / 06
+        </span>
+        <p className="mb-8 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] text-muted">
+          <span className="inline-block h-px w-10 bg-accent" aria-hidden="true" />
+          Contact
         </p>
 
-        <h2 data-talk className="display leading-[0.98]">
-          <span className="block text-[11vw] sm:text-[10vw]">Let&apos;s</span>
-          <span className="block text-[11vw] text-stroke sm:text-[10vw]">
-            build<span className="font-serif italic font-normal lowercase text-iridescent"> it.</span>
+        <h2 data-talk className="display leading-[1.05]">
+          <span className="block text-[9vw] sm:text-6xl md:text-7xl">Let&apos;s build</span>
+          <span className="block text-[9vw] sm:text-6xl md:text-7xl">
+            something{" "}
+            <span className="font-serif italic font-normal text-iridescent">great.</span>
           </span>
         </h2>
 
@@ -100,10 +99,9 @@ export default function Contact() {
 
           <a
             href={`mailto:${profile.email}`}
-            data-cursor="Say hi"
-            className="wave-link mt-8 inline-block break-all font-mono text-lg font-medium tracking-tight text-fg sm:text-3xl md:text-4xl"
+            className="link-sweep mt-8 inline-block break-all text-xl font-medium tracking-tight text-fg transition-colors duration-300 hover:text-accent sm:text-2xl md:text-3xl"
           >
-            <WaveChars text={profile.email} />
+            {profile.email}
           </a>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">

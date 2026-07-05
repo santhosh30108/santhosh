@@ -17,11 +17,11 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/santhosh30108",
   linkedinHandle: "in/santhosh30108",
   resume: "/resume.pdf",
+  // Real designations only — rotated in the hero
   roles: [
+    "Senior Software Engineer · Aakash Educational Services Limited",
     "Full-Stack Developer",
-    "Senior Software Engineer",
-    "Product-Minded Builder",
-    "Problem Solver",
+    "Previously — Software Engineer · BYJU'S",
   ],
   summary:
     "Full-stack developer with end-to-end ownership across the design, development, and optimisation of scalable systems. I build user-centric products in the ed-tech space — from CRM platforms that replaced costly third-party licenses to secure assessment engines used across web and mobile — with a commitment to clean, efficient, maintainable code.",

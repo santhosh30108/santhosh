@@ -27,7 +27,7 @@ export default function Skills() {
   return (
     <section id="skills" className="relative scroll-mt-20 bg-bg-2/60 py-28 sm:py-40">
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8">
-        <ChapterHeading index="04" eyebrow="Capabilities — the toolkit">
+        <ChapterHeading index="04" eyebrow="Capabilities">
           Depth over
           <br />
           <span className="font-serif italic font-normal lowercase text-iridescent">breadth.</span>
@@ -51,7 +51,7 @@ export default function Skills() {
                   >
                     <span className="flex items-baseline gap-5 sm:gap-8">
                       <span className="font-mono text-xs text-accent">0{gi + 1}</span>
-                      <span className="display text-2xl leading-[1.05] sm:text-4xl md:text-5xl">
+                      <span className="display text-2xl leading-[1.05] sm:text-3xl md:text-4xl">
                         {group.group}
                       </span>
                     </span>

@@ -19,15 +19,15 @@ const ACCENT_TEXT = {
 function WorkCard({ project, index }) {
   return (
     <TiltCard
-      className="panel flex h-full min-h-[420px] flex-col justify-between rounded-3xl p-7 sm:min-h-[480px] sm:p-10"
       data-cursor="Case study"
+      className="panel flex h-full min-h-[420px] flex-col justify-between rounded-3xl p-7 sm:min-h-[480px] sm:p-10"
     >
       <div>
-        <div className="flex items-start justify-between gap-6">
-          <span className="watermark text-6xl sm:text-8xl">
+        <div className="flex items-baseline justify-between gap-6">
+          <span className="font-mono text-xs text-muted">
             {String(index + 1).padStart(2, "0")}
           </span>
-          <span className="rounded-full border border-line-strong px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+          <span className="rounded-full border border-line px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
             {project.org}
           </span>
         </div>
@@ -99,7 +99,7 @@ export default function Projects() {
   return (
     <section id="work" ref={ref} className="relative scroll-mt-20 py-28 sm:py-40 lg:pb-0">
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8">
-        <ChapterHeading index="03" eyebrow="Selected work — case studies">
+        <ChapterHeading index="03" eyebrow="Selected work">
           Systems in
           <br />
           <span className="font-serif italic font-normal lowercase text-iridescent">production.</span>
@@ -125,7 +125,7 @@ export default function Projects() {
 
             <div className="hidden items-center lg:flex lg:w-[420px] lg:shrink-0">
               <div className="px-10">
-                <p className="display text-5xl leading-[1.05] text-stroke">
+                <p className="display text-4xl leading-[1.05] text-quiet">
                   More in the pipeline
                 </p>
                 <p className="mt-6 max-w-xs text-fg-soft">
