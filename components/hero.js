@@ -123,13 +123,13 @@ export default function Hero() {
             style={{ fontWeight: 700, letterSpacing: "-0.02em" }}
           >
             <span data-l1 className="char-line block text-[clamp(3rem,9vw,8rem)] leading-[0.95]">
-              <Chars text="S K Santhosh" />
+              <Chars text="Santhosh" />
             </span>
             <span
               data-l2
               className="char-line block text-[clamp(3rem,9vw,8rem)] leading-[0.95] text-quiet"
             >
-              <Chars text="Kumar" />
+              <Chars text="Kumar S K" />
             </span>
           </h1>
         </div>
