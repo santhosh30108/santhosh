@@ -40,7 +40,7 @@ export function ChapterHeading({ index, eyebrow, children, className = "" }) {
   );
 
   return (
-    <div ref={ref} className={`relative mb-16 sm:mb-24 ${className}`}>
+    <div ref={ref} className={`relative mb-12 sm:mb-16 ${className}`}>
       <span
         aria-hidden="true"
         className="absolute right-0 top-1 hidden select-none font-mono text-sm tracking-[0.2em] text-muted/70 sm:block"

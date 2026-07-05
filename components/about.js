@@ -18,7 +18,7 @@ function ScrubWords({ text }) {
   ));
 }
 
-export default function About() {
+export default function About({ hasPortrait }) {
   const ref = useRef(null);
 
   useGSAP(
@@ -41,7 +41,7 @@ export default function About() {
   );
 
   return (
-    <section id="about" ref={ref} className="relative scroll-mt-20 py-28 sm:py-40">
+    <section id="about" ref={ref} className="relative scroll-mt-20 py-20 sm:py-28">
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8">
         <ChapterHeading index="01" eyebrow="About">
           Owner,
@@ -49,13 +49,13 @@ export default function About() {
           not <span className="font-serif italic font-normal lowercase text-iridescent">renter.</span>
         </ChapterHeading>
 
-        <div className="grid gap-16 lg:grid-cols-[1.6fr_1fr] lg:gap-24">
+        <div className="grid gap-16 lg:grid-cols-[1.6fr_1fr] lg:gap-20">
           <div>
             <p className="word-scrub max-w-3xl text-2xl font-medium leading-snug tracking-tight sm:text-3xl md:text-[2.6rem] md:leading-[1.2]">
               <ScrubWords text={MANIFESTO} />
             </p>
 
-            <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-4">
+            <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-4">
               {profile.stats.map((stat, i) => (
                 <Rise
                   key={stat.label}
@@ -73,11 +73,23 @@ export default function About() {
                 </Rise>
               ))}
             </div>
+
+            <Rise delay={0.15} className="mt-10">
+              <figure className="panel glare rounded-2xl p-7">
+                <blockquote className="font-serif text-xl italic leading-relaxed text-fg-soft">
+                  “Actively practicing data structures and algorithms — committed to clean,
+                  efficient, maintainable code.”
+                </blockquote>
+                <figcaption className="mt-4 font-mono text-[10px] uppercase tracking-[0.25em] text-muted">
+                  — the daily discipline
+                </figcaption>
+              </figure>
+            </Rise>
           </div>
 
           <div className="space-y-10">
             <Rise>
-              <Portrait />
+              <Portrait available={hasPortrait} />
             </Rise>
 
             <Rise>
@@ -110,18 +122,6 @@ export default function About() {
                   </li>
                 ))}
               </ul>
-            </Rise>
-
-            <Rise delay={0.15}>
-              <figure className="panel glare rounded-2xl p-7">
-                <blockquote className="font-serif text-xl italic leading-relaxed text-fg-soft">
-                  “Actively practicing data structures and algorithms — committed to clean,
-                  efficient, maintainable code.”
-                </blockquote>
-                <figcaption className="mt-4 font-mono text-[10px] uppercase tracking-[0.25em] text-muted">
-                  — the daily discipline
-                </figcaption>
-              </figure>
             </Rise>
           </div>
         </div>

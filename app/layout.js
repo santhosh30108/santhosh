@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono, Instrument_Sans, Instrument_Serif } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { profile, SITE_URL } from "@/data/profile";
 
@@ -117,7 +118,6 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} ${serifDisplay.variable} ${displayGrotesk.variable} h-full antialiased`}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -127,6 +127,11 @@ export default function RootLayout({ children }) {
         </noscript>
       </head>
       <body className="min-h-full flex flex-col bg-bg text-fg">
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeInit }}
+        />
         {children}
       </body>
     </html>

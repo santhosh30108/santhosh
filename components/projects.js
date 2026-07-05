@@ -101,7 +101,7 @@ export default function Projects() {
   );
 
   return (
-    <section id="work" ref={ref} className="relative scroll-mt-20 py-28 sm:py-40 lg:pb-0">
+    <section id="work" ref={ref} className="relative scroll-mt-20 py-20 sm:py-28 lg:pb-0">
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8">
         <ChapterHeading index="03" eyebrow="Selected work">
           Systems in
@@ -119,7 +119,7 @@ export default function Projects() {
         <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:max-w-none lg:px-0">
           <div
             data-track
-            className="mt-12 grid gap-6 sm:mt-16 lg:mt-0 lg:flex lg:w-max lg:items-stretch lg:gap-8 lg:pl-[max(1.25rem,calc((100vw-1600px)/2+2rem))] lg:pr-24"
+            className="mt-10 grid gap-6 sm:mt-12 lg:mt-0 lg:flex lg:w-max lg:items-stretch lg:gap-8 lg:pl-[max(1.25rem,calc((100vw-1600px)/2+2rem))] lg:pr-24"
           >
             {projects.map((project, i) => (
               <div key={project.title} className="lg:w-[560px] lg:shrink-0 xl:w-[620px]">
@@ -149,7 +149,7 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="mx-auto mt-10 hidden w-full max-w-[1600px] px-8 lg:block">
+        <div className="mx-auto mt-8 hidden w-full max-w-[1600px] px-8 lg:block">
           <div className="h-px w-full bg-line">
             <div
               data-progress

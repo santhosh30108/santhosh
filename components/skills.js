@@ -31,7 +31,7 @@ export default function Skills() {
   }, [open]);
 
   return (
-    <section id="skills" className="relative scroll-mt-20 bg-bg-2/60 py-28 sm:py-40">
+    <section id="skills" className="relative scroll-mt-20 bg-bg-2/60 py-20 sm:py-28">
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8">
         <ChapterHeading index="04" eyebrow="Capabilities">
           Depth over
@@ -57,7 +57,7 @@ export default function Skills() {
                     }}
                     aria-expanded={isOpen}
                     data-cursor={isOpen ? "Close" : "Open"}
-                    className="flex w-full items-center justify-between gap-6 px-5 py-7 text-left sm:px-10 sm:py-9"
+                    className="flex w-full items-center justify-between gap-6 px-5 py-6 text-left sm:px-10 sm:py-8"
                   >
                     <span className="flex items-baseline gap-5 sm:gap-8">
                       <span className="font-mono text-xs text-accent">0{gi + 1}</span>

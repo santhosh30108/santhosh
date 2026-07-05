@@ -1,29 +1,28 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import TiltCard from "@/components/tilt-card";
 import { profile } from "@/data/profile";
 
 // Portrait card for the About section. Uses /portrait.jpg from /public;
-// falls back to a monogram placeholder until a photo is added.
-export default function Portrait() {
+// the page checks for the file server-side and passes `available`, so the
+// monogram placeholder renders without ever requesting a missing image.
+export default function Portrait({ available = true }) {
   const [failed, setFailed] = useState(false);
-  const imgRef = useRef(null);
-
-  // If the image 404'd before hydration, the error event is long gone —
-  // detect it from the element's state on mount.
-  useEffect(() => {
-    const img = imgRef.current;
-    const id = requestAnimationFrame(() => {
-      if (img && img.complete && img.naturalWidth === 0) setFailed(true);
-    });
-    return () => cancelAnimationFrame(id);
-  }, []);
+  const showImage = available && !failed;
 
   return (
     <TiltCard max={2} className="panel group relative overflow-hidden rounded-3xl">
       <div className="relative aspect-[4/5]">
-        {failed ? (
+        {showImage ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src="/portrait.jpg"
+            alt={`Portrait of ${profile.name}`}
+            onError={() => setFailed(true)}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          />
+        ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-bg-2">
             <span className="display flex h-24 w-24 items-center justify-center rounded-3xl bg-fg text-3xl text-bg">
               {profile.initials}
@@ -32,15 +31,6 @@ export default function Portrait() {
               Portrait — add public/portrait.jpg
             </p>
           </div>
-        ) : (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            ref={imgRef}
-            src="/portrait.jpg"
-            alt={`Portrait of ${profile.name}`}
-            onError={() => setFailed(true)}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-          />
         )}
         <div
           aria-hidden="true"

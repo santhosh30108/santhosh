@@ -62,7 +62,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="relative flex min-h-svh scroll-mt-20 flex-col justify-center overflow-hidden bg-bg-2/60 py-28 sm:py-36"
+      className="relative flex min-h-svh scroll-mt-20 flex-col justify-center overflow-hidden bg-bg-2/60 py-20 sm:py-28"
     >
       <div
         aria-hidden="true"
@@ -90,7 +90,7 @@ export default function Contact() {
           </span>
         </h2>
 
-        <Rise className="mt-12 sm:mt-16">
+        <Rise className="mt-10 sm:mt-12">
           <p className="max-w-lg text-base leading-relaxed text-fg-soft sm:text-lg">
             Open to senior engineering roles, ambitious products, and good conversations.
             One email starts all three.
@@ -141,7 +141,7 @@ export default function Contact() {
         </Rise>
 
         <Rise delay={0.1}>
-          <div className="mt-20 grid gap-6 border-t border-line pt-8 font-mono text-[11px] uppercase tracking-[0.25em] text-muted sm:grid-cols-3">
+          <div className="mt-14 grid gap-6 border-t border-line pt-8 font-mono text-[11px] uppercase tracking-[0.25em] text-muted sm:grid-cols-3">
             <span>
               Local time — <LocalClock /> IST
             </span>

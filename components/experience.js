@@ -31,7 +31,7 @@ export default function Experience() {
   );
 
   return (
-    <section id="experience" ref={ref} className="relative scroll-mt-20 bg-bg-2/60 py-28 sm:py-40">
+    <section id="experience" ref={ref} className="relative scroll-mt-20 bg-bg-2/60 py-20 sm:py-28">
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8">
         <ChapterHeading index="02" eyebrow="Experience">
           Four years,
@@ -47,7 +47,7 @@ export default function Experience() {
             className="absolute left-[5px] top-2 hidden h-[calc(100%-1rem)] w-px origin-top bg-gradient-to-b from-accent via-accent-2 to-transparent sm:block"
           />
 
-          <ol className="space-y-20 sm:space-y-28 sm:pl-16">
+          <ol className="space-y-16 sm:space-y-20 sm:pl-16">
             {experience.map((job, i) => {
               return (
                 <li key={`${job.company}-${job.role}`} className="relative">

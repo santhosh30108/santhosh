@@ -7,7 +7,7 @@ import { awards, certifications, publication } from "@/data/profile";
 
 export default function Honors() {
   return (
-    <section id="honors" className="relative scroll-mt-20 py-28 sm:py-40">
+    <section id="honors" className="relative scroll-mt-20 py-20 sm:py-28">
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8">
         <ChapterHeading index="05" eyebrow="Recognition">
           Proof of
