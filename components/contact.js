@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import Magnetic from "@/components/magnetic";
 import { Rise } from "@/components/chapter";
 import { gsap, useGSAP } from "@/components/gsap";
 import { IconCheck, IconCopy, IconDownload, IconLinkedIn, IconPhone } from "@/components/icons";
@@ -105,47 +104,39 @@ export default function Contact() {
           </a>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Magnetic>
-              <button
-                type="button"
-                onClick={copyEmail}
-                className="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
-              >
-                {copied ? <IconCheck className="h-4 w-4 text-emerald-400" /> : <IconCopy className="h-4 w-4" />}
-                {copied ? "Copied!" : "Copy address"}
-              </button>
-            </Magnetic>
-            <Magnetic>
-              <a
-                href={profile.resume}
-                download="Santhosh-Kumar-Resume.pdf"
-                className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
-              >
-                <span className="btn-fill" aria-hidden="true" />
-                <IconDownload className="h-4 w-4" />
-                <span>Résumé — PDF</span>
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a
-                href={profile.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
-              >
-                <IconLinkedIn className="h-4 w-4" />
-                LinkedIn
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a
-                href={`tel:${profile.phoneHref}`}
-                className="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
-              >
-                <IconPhone className="h-4 w-4" />
-                {profile.phone}
-              </a>
-            </Magnetic>
+            <button
+              type="button"
+              onClick={copyEmail}
+              className="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
+            >
+              {copied ? <IconCheck className="h-4 w-4 text-emerald-400" /> : <IconCopy className="h-4 w-4" />}
+              {copied ? "Copied!" : "Copy address"}
+            </button>
+            <a
+              href={profile.resume}
+              download="Santhosh-Kumar-Resume.pdf"
+              className="btn-primary group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
+            >
+              <span className="btn-fill" aria-hidden="true" />
+              <IconDownload className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-y-0.5" />
+              <span>Résumé — PDF</span>
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
+            >
+              <IconLinkedIn className="h-4 w-4" />
+              LinkedIn
+            </a>
+            <a
+              href={`tel:${profile.phoneHref}`}
+              className="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
+            >
+              <IconPhone className="h-4 w-4" />
+              {profile.phone}
+            </a>
           </div>
         </Rise>
 

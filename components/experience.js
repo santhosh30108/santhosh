@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { ChapterHeading, Rise } from "@/components/chapter";
-import { gsap, useGSAP } from "@/components/gsap";
+import { gsap, ScrollTrigger, useGSAP } from "@/components/gsap";
 import { experience } from "@/data/profile";
 
 export default function Experience() {
@@ -77,7 +77,10 @@ export default function Experience() {
                       {job.summary}
                     </p>
 
-                    <details className="group/details mt-5">
+                    <details
+                      className="group/details mt-5"
+                      onToggle={() => ScrollTrigger.refresh()}
+                    >
                       <summary
                         data-cursor="Open"
                         className="inline-flex cursor-pointer list-none items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-accent transition-colors hover:text-accent-2 [&::-webkit-details-marker]:hidden"

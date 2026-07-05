@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChapterHeading, Rise } from "@/components/chapter";
+import { ScrollTrigger } from "@/components/gsap";
 import { skills } from "@/data/profile";
 
 function levelLabel(level) {
@@ -44,7 +45,11 @@ export default function Skills() {
                 >
                   <button
                     type="button"
-                    onClick={() => setOpen(isOpen ? -1 : gi)}
+                    onClick={() => {
+                      setOpen(isOpen ? -1 : gi);
+                      // let the height transition finish, then re-measure scroll positions
+                      setTimeout(() => ScrollTrigger.refresh(), 560);
+                    }}
                     aria-expanded={isOpen}
                     data-cursor={isOpen ? "Close" : "Open"}
                     className="flex w-full items-center justify-between gap-6 px-5 py-7 text-left sm:px-10 sm:py-9"

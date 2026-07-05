@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Magnetic from "@/components/magnetic";
 import Sky from "@/components/sky";
 import { gsap, useGSAP } from "@/components/gsap";
 import { IconArrowUpRight, IconDownload } from "@/components/icons";
@@ -11,7 +10,7 @@ import { profile } from "@/data/profile";
 function Chars({ text }) {
   return text.split("").map((c, i) => (
     <span key={i} className="char">
-      {c === " " ? " " : c}
+      {c === " " ? " " : c}
     </span>
   ));
 }
@@ -127,7 +126,7 @@ export default function Hero() {
             style={{ fontWeight: 700, letterSpacing: "-0.02em" }}
           >
             <span data-l1 className="char-line block text-[clamp(3rem,9vw,8rem)] leading-[0.95]">
-              <Chars text="Santhosh" />
+              <Chars text="S K Santhosh" />
             </span>
             <span
               data-l2
@@ -151,27 +150,23 @@ export default function Hero() {
           </div>
 
           <div data-meta className="flex flex-wrap items-center gap-4">
-            <Magnetic>
-              <a
-                href="#work"
-                data-cursor="Explore"
-                className="btn-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium"
-              >
-                <span className="btn-fill" aria-hidden="true" />
-                <span>View the work</span>
-                <IconArrowUpRight className="h-4 w-4" />
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a
-                href={profile.resume}
-                download="Santhosh-Kumar-Resume.pdf"
-                className="btn-ghost inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium"
-              >
-                <IconDownload className="h-4 w-4" />
-                Résumé
-              </a>
-            </Magnetic>
+            <a
+              href="#work"
+              data-cursor="Explore"
+              className="btn-primary group inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium"
+            >
+              <span className="btn-fill" aria-hidden="true" />
+              <span>View the work</span>
+              <IconArrowUpRight className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+            <a
+              href={profile.resume}
+              download="Santhosh-Kumar-Resume.pdf"
+              className="btn-ghost group inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium"
+            >
+              <IconDownload className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-y-0.5" />
+              Résumé
+            </a>
           </div>
         </div>
 
