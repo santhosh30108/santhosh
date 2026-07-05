@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import ThemeToggle from "@/components/theme-toggle";
 import { IconCommand } from "@/components/icons";
+import { scrollToSection } from "@/components/scroll-nav";
 import { NAV_SECTIONS } from "@/components/sections-config";
 import { profile } from "@/data/profile";
 
@@ -72,6 +73,9 @@ export default function Topbar({ onOpenPalette }) {
                   <a
                     href={`#${s.id}`}
                     aria-current={isActive ? "true" : undefined}
+                    onClick={(e) => {
+                      if (scrollToSection(s.id)) e.preventDefault();
+                    }}
                     className={`relative rounded-full px-3.5 py-2 text-sm transition-colors duration-300 lg:px-4 ${
                       isActive
                         ? "text-fg"
@@ -134,7 +138,10 @@ export default function Topbar({ onOpenPalette }) {
               <li key={s.id}>
                 <a
                   href={`#${s.id}`}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(e) => {
+                    if (scrollToSection(s.id)) e.preventDefault();
+                    setMenuOpen(false);
+                  }}
                   className={`flex items-baseline gap-4 rounded-lg px-3 py-3 text-lg font-medium transition-colors hover:bg-surface-2 ${
                     active === s.id ? "text-fg" : "text-fg-soft"
                   }`}

@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Counter from "@/components/counter";
+import Portrait from "@/components/portrait";
 import { ChapterHeading, Rise } from "@/components/chapter";
 import { gsap, useGSAP } from "@/components/gsap";
 import { education, profile } from "@/data/profile";
@@ -75,6 +76,10 @@ export default function About() {
           </div>
 
           <div className="space-y-10">
+            <Rise>
+              <Portrait />
+            </Rise>
+
             <Rise>
               <h3 className="mb-5 font-mono text-[11px] uppercase tracking-[0.3em] text-muted">
                 Education

@@ -5,6 +5,7 @@ import TiltCard from "@/components/tilt-card";
 import { ChapterHeading } from "@/components/chapter";
 import { gsap, useGSAP } from "@/components/gsap";
 import { IconSpark } from "@/components/icons";
+import { scrollToSection } from "@/components/scroll-nav";
 import { projects } from "@/data/profile";
 
 const ACCENT_TEXT = {
@@ -72,6 +73,7 @@ export default function Projects() {
         const track = ref.current.querySelector("[data-track]");
         const pinArea = ref.current.querySelector("[data-pin]");
         const progress = ref.current.querySelector("[data-progress]");
+        const HEADER = 72;
         const getDistance = () => track.scrollWidth - window.innerWidth;
 
         const tween = gsap.to(track, {
@@ -79,10 +81,12 @@ export default function Projects() {
           ease: "none",
           scrollTrigger: {
             trigger: pinArea,
-            start: "top top",
-            end: () => `+=${getDistance()}`,
+            // pin below the fixed header so the gallery never slides under it
+            start: `top ${HEADER}px`,
+            // travel the gallery in ~70% of its pixel width — brisker, less scrolling
+            end: () => `+=${Math.round(getDistance() * 0.7)}`,
             pin: true,
-            scrub: 0.6,
+            scrub: 0.7,
             invalidateOnRefresh: true,
             anticipatePin: 1,
             onUpdate: (self) => {
@@ -111,7 +115,7 @@ export default function Projects() {
       </div>
 
       {/* Desktop: pinned horizontal gallery. Mobile: vertical stack. */}
-      <div data-pin className="lg:flex lg:h-screen lg:flex-col lg:justify-center">
+      <div data-pin className="lg:flex lg:h-[calc(100vh-72px)] lg:flex-col lg:justify-center">
         <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:max-w-none lg:px-0">
           <div
             data-track
@@ -133,6 +137,9 @@ export default function Projects() {
                 </p>
                 <a
                   href="#contact"
+                  onClick={(e) => {
+                    if (scrollToSection("contact")) e.preventDefault();
+                  }}
                   className="link-sweep mt-6 inline-block font-mono text-xs uppercase tracking-[0.25em] text-accent"
                 >
                   Get in touch →

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { scrollToSection } from "@/components/scroll-nav";
 import { NAV_SECTIONS } from "@/components/sections-config";
 import { IconArrowUpRight, IconCheck, IconCommand, IconCopy, IconDownload, IconMail, IconMoon, IconSearch, IconSpark, IconSun } from "@/components/icons";
 import { toggleTheme, useTheme } from "@/components/use-theme";
@@ -24,7 +25,7 @@ export default function CommandPalette({ onClose }) {
       hint: `Jump to ${s.label}`,
       icon: IconArrowUpRight,
       run: () => {
-        document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" });
+        if (!scrollToSection(s.id)) document.getElementById(s.id)?.scrollIntoView();
       },
     }));
     return [

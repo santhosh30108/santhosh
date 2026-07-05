@@ -79,7 +79,12 @@ export default function Experience() {
 
                     <details
                       className="group/details mt-5"
-                      onToggle={() => ScrollTrigger.refresh()}
+                      onToggle={(e) => {
+                        const summary = e.currentTarget.querySelector("summary");
+                        if (summary) summary.dataset.cursor = e.currentTarget.open ? "Close" : "Open";
+                        window.dispatchEvent(new CustomEvent("cursor:refresh"));
+                        ScrollTrigger.refresh();
+                      }}
                     >
                       <summary
                         data-cursor="Open"

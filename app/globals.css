@@ -19,7 +19,7 @@
   --accent-soft: rgba(139, 139, 253, 0.12);
   --glow-1: rgba(107, 107, 245, 0.22);
   --glow-2: rgba(56, 189, 248, 0.12);
-  --glass: rgba(6, 6, 11, 0.55);
+  --glass: rgba(6, 6, 11, 0.72);
   --scrim: rgba(6, 6, 11, 0.72);
   color-scheme: dark;
 }
@@ -40,7 +40,7 @@
   --accent-soft: rgba(79, 70, 229, 0.1);
   --glow-1: rgba(99, 102, 241, 0.18);
   --glow-2: rgba(8, 145, 178, 0.1);
-  --glass: rgba(242, 241, 236, 0.6);
+  --glass: rgba(242, 241, 236, 0.78);
   --scrim: rgba(242, 241, 236, 0.78);
   color-scheme: light;
 }

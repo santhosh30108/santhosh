@@ -4,7 +4,8 @@ import { useRef } from "react";
 import Sky from "@/components/sky";
 import { gsap, useGSAP } from "@/components/gsap";
 import { IconArrowUpRight, IconDownload } from "@/components/icons";
-import { CONDITION_LABELS, PHASE_LABELS, useEnvironment } from "@/components/use-environment";
+import { scrollToSection } from "@/components/scroll-nav";
+import { PHASE_LABELS, useEnvironment } from "@/components/use-environment";
 import { profile } from "@/data/profile";
 
 function Chars({ text }) {
@@ -18,7 +19,7 @@ function Chars({ text }) {
 export default function Hero() {
   const ref = useRef(null);
   const roleRef = useRef(null);
-  const { phase, condition } = useEnvironment();
+  const { phase } = useEnvironment();
 
   useGSAP(
     () => {
@@ -89,11 +90,7 @@ export default function Hero() {
   );
 
   const summaryLead = profile.summary.split(". ")[0] + ".";
-  const skyLabel = phase
-    ? condition
-      ? `${CONDITION_LABELS[condition]} · ${PHASE_LABELS[phase]}`
-      : PHASE_LABELS[phase]
-    : "";
+  const skyLabel = phase ? PHASE_LABELS[phase] : "";
 
   return (
     <section
@@ -102,7 +99,7 @@ export default function Hero() {
       className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden"
     >
       <div className="absolute inset-0">
-        <Sky phase={phase} condition={condition} />
+        <Sky phase={phase} />
       </div>
       {/* readability scrims — content zone stays anchored to the page bg */}
       <div
@@ -152,6 +149,9 @@ export default function Hero() {
           <div data-meta className="flex flex-wrap items-center gap-4">
             <a
               href="#work"
+              onClick={(e) => {
+                if (scrollToSection("work")) e.preventDefault();
+              }}
               data-cursor="Explore"
               className="btn-primary group inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium"
             >
@@ -176,11 +176,17 @@ export default function Hero() {
         >
           <span>{profile.location}</span>
           {skyLabel ? (
-            <span className="hidden sm:block" title="The sky above adapts to your local time and weather">
+            <span className="hidden sm:block" title="The sky above adapts to your local time">
               {skyLabel}
             </span>
           ) : null}
-          <a href="#about" className="link-sweep flex items-center gap-2 text-fg-soft">
+          <a
+            href="#about"
+            onClick={(e) => {
+              if (scrollToSection("about")) e.preventDefault();
+            }}
+            className="link-sweep flex items-center gap-2 text-fg-soft"
+          >
             Scroll
             <span style={{ animation: "float-slow 2.6s ease-in-out infinite" }} aria-hidden="true">
               ↓

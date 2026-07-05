@@ -39,11 +39,13 @@ export default function Cursor() {
     };
 
     const INTERACTIVE = "a, button, [role='button'], input, textarea, summary, [data-cursor]";
+    let labeledEl = null;
     const onOver = (e) => {
       const el = e.target.closest(INTERACTIVE);
       if (!el) return;
       const text = el.dataset?.cursor;
       if (text && label) {
+        labeledEl = el;
         label.textContent = text;
         gsap.to(ring, { scale: 3.2, backgroundColor: "var(--fg)", duration: 0.35, ease: "power3.out" });
         gsap.to(label, { opacity: 1, duration: 0.25 });
@@ -55,17 +57,26 @@ export default function Cursor() {
     const onOut = (e) => {
       const el = e.target.closest(INTERACTIVE);
       if (!el) return;
+      if (el === labeledEl) labeledEl = null;
       gsap.to(ring, { scale: 1, backgroundColor: "transparent", duration: 0.35, ease: "power3.out" });
       if (label) gsap.to(label, { opacity: 0, duration: 0.2 });
       gsap.to(dot, { opacity: 1, duration: 0.2 });
     };
 
     const onDown = () => gsap.to(ring, { scale: 0.85, duration: 0.18 });
-    const onUp = () => gsap.to(ring, { scale: 1, duration: 0.25 });
+    const onUp = () => gsap.to(ring, { scale: labeledEl ? 3.2 : 1, duration: 0.25 });
+    // Components dispatch this after changing an element's data-cursor
+    // (e.g. Open → Close) so the visible label updates in place.
+    const onRefresh = () => {
+      if (labeledEl?.isConnected && label && labeledEl.dataset.cursor) {
+        label.textContent = labeledEl.dataset.cursor;
+      }
+    };
     const onLeaveDoc = () => gsap.to([dot, ring], { opacity: 0, duration: 0.3 });
     const onEnterDoc = () => gsap.to([dot, ring], { opacity: 1, duration: 0.3 });
 
     window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("cursor:refresh", onRefresh);
     document.addEventListener("pointerover", onOver);
     document.addEventListener("pointerout", onOut);
     document.addEventListener("pointerdown", onDown);
@@ -76,6 +87,7 @@ export default function Cursor() {
     return () => {
       document.documentElement.classList.remove("has-custom-cursor");
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("cursor:refresh", onRefresh);
       document.removeEventListener("pointerover", onOver);
       document.removeEventListener("pointerout", onOut);
       document.removeEventListener("pointerdown", onDown);

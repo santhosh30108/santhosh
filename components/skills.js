@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChapterHeading, Rise } from "@/components/chapter";
 import { ScrollTrigger } from "@/components/gsap";
 import { skills } from "@/data/profile";
@@ -24,6 +24,11 @@ const GROUP_NOTES = {
 
 export default function Skills() {
   const [open, setOpen] = useState(0);
+
+  // data-cursor labels flip with React state — tell the cursor to re-read
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent("cursor:refresh"));
+  }, [open]);
 
   return (
     <section id="skills" className="relative scroll-mt-20 bg-bg-2/60 py-28 sm:py-40">

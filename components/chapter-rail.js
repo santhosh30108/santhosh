@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { scrollToSection } from "@/components/scroll-nav";
 import { NAV_SECTIONS } from "@/components/sections-config";
 
 // Fixed right-edge chapter navigation: index ticks that expand into labels.
@@ -25,9 +26,7 @@ export default function ChapterRail() {
   return (
     <nav
       aria-label="Chapters"
-      className={`fixed right-6 top-1/2 z-30 hidden -translate-y-1/2 transition-opacity duration-500 lg:block ${
-        active === "work" ? "pointer-events-none opacity-0" : "opacity-100"
-      }`}
+      className="fixed right-6 top-1/2 z-30 hidden -translate-y-1/2 lg:block"
     >
       <ul className="flex flex-col items-end gap-1">
         {NAV_SECTIONS.map((s) => {
@@ -37,6 +36,9 @@ export default function ChapterRail() {
               <a
                 href={`#${s.id}`}
                 aria-current={isActive ? "true" : undefined}
+                onClick={(e) => {
+                  if (scrollToSection(s.id)) e.preventDefault();
+                }}
                 className="group flex items-center justify-end gap-3 py-1.5"
               >
                 <span
